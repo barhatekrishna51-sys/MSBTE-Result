@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maharashtra State Board of Technical Education</title>
+    <style>
+        /* same styles as before ... */
+
+        .header { text-align:center; padding:15px 0; border-bottom:1px solid #ccc; }
+        .header-inner { display:inline-flex; align-items:center; gap:15px; }
+        .header-logo { width:80px; height:auto; }
+        .header-text h1 { margin:0; font-size:24px; }
+        .header-text h2 { margin:3px 0 0; font-size:16px; font-weight:normal; }
+
+        .card-wrapper { display:flex; justify-content:center; margin-top:60px; }
+        .card { background:#fff9d9; padding:25px 35px; border:1px solid #f1e4a0; min-width:550px; }
+        .form-row { margin-bottom:18px; }
+        .label { display:inline-block; width:230px; font-weight:bold; }
+        select, input[type="text"] { width:260px; padding:6px 8px; font-size:14px; }
+        .captcha-img { vertical-align:middle; margin-left:5px; font-size:22px; color:#b52b2b; font-weight:bold; text-decoration:line-through; }
+        .button-row { text-align:center; margin-top:10px; }
+        .btn { background:#ffd54f; border:1px solid:#f4b400; padding:6px 16px; font-weight:bold; cursor:pointer; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <img src="mainlogo.png" alt="MSBTE Logo" class="header-logo">
+            <div class="header-text">
+                <h1>Maharashtra State Board of Technical Education</h1>
+                <h2>महाराष्ट्र राज्य तंत्र शिक्षण मंडळ, मुंबई</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-wrapper">
+        <!-- no action, JS will handle new tab -->
+        <form class="card" id="resultForm">
+            <div class="form-row">
+                <span class="label">Select Enrollment No. or Seat No.</span>
+                <select name="enr_type" required>
+                    <option value="">(See Below)</option>
+                    <option value="enroll">Enrollment No.</option>
+                    <option value="seat">Seat No.</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <span class="label">Enter Enrollment No. Or Seat No.</span>
+                <input type="text" name="enr_no" required>
+            </div>
+
+            <div class="form-row">
+                <span class="label">Captcha</span>
+                <span class="captcha-img">YfwatSHs</span>
+            </div>
+
+            <div class="form-row">
+                <span class="label">Type Above Captcha Here</span>
+                <input type="text" name="captcha" required>
+            </div>
+
+            <div class="button-row">
+                <button type="submit" class="btn">ShowResult</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('resultForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // stop normal submit
+
+            // open blank new tab
+            const win = window.open('', '_blank');
+
+            // simple HTML for the new tab
+            const html = `
+                <!DOCTYPE html>
+                <html lang="mr">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>MSBTE Result</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; background:#fff9d9; display:flex;
+                               justify-content:center; align-items:center; height:100vh; margin:0; }
+                        .msg-card {
+                            background:#fff3cd;
+                            border:1px solid #ffeeba;
+                            padding:20px 30px;
+                            color:#856404;
+                            font-size:20px;
+                            font-weight:bold;
+                            text-align:center;
+                            border-radius:4px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="msg-card">
+                        Result पेक्षा तुझी टेन्शन जास्त heavy आहे, थोडं हलकं हो bhau!
+                        🤣🤣🤣 बिचार reult चा मारा.
+                        <img src="monkey.jpg" width="240" height="240">
+                    </div>
+                </body>
+                </html>
+            `;
+
+            win.document.open();
+            win.document.write(html);
+            win.document.close();
+        });
+    </script>
+</body>
+</html>
